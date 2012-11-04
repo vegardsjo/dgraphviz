@@ -1,5 +1,5 @@
-ISC license
-===========
+License
+=======
 
 Copyright (c) 2012, Vegard Sjonfjell <vegardsjo@gmail.com>
 
