@@ -23,16 +23,15 @@ enum GraphType
   digraphStrict = AGDIGRAPHSTRICT
 }
 
-string gv_attrAccess(alias gv_var)()
+mixin template AttrAccess(alias gv_var)
 {
-  return xformat("
   void opDispatch(string attr)(string value) {
-    agsafeset(%s, attr.toStringz, value.toStringz, \"\");
+    agsafeset(gv_var, attr.toStringz, value.toStringz, "");
   }
   
   string opDispatch(string attr)() {
     return to!string(agget(gv_var, attr.toStringz));
-  }", gv_var);
+  }
 }
 
 class Graph
@@ -90,7 +89,7 @@ class Graph
     gvRender(gv_context, gv_graph, type.toStringz, file.getFP);
   }
   
-  mixin(gv_attrAccess!("gv_graph"));
+  mixin AttrAccess!("gv_graph");
 }
 
 
@@ -102,7 +101,7 @@ class Node
     this.gv_node = gv_node;
   }
   
-  mixin(gv_attrAccess!("gv_node"));
+  mixin AttrAccess!("gv_node");
 }
 
 class Edge
@@ -113,5 +112,5 @@ class Edge
     this.gv_edge = gv_edge;
   }
 
-  mixin(gv_attrAccess!("gv_edge"));
+  mixin AttrAccess!("gv_edge");
 }
