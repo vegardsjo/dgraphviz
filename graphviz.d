@@ -89,7 +89,7 @@ class Graph
     gvRender(gv_context, gv_graph, type.toStringz, file.getFP);
   }
   
-  mixin AttrAccess!("gv_graph");
+  mixin AttrAccess!(gv_graph);
 }
 
 
@@ -101,7 +101,7 @@ class Node
     this.gv_node = gv_node;
   }
   
-  mixin AttrAccess!("gv_node");
+  mixin AttrAccess!(gv_node);
 }
 
 class Edge
@@ -112,5 +112,5 @@ class Edge
     this.gv_edge = gv_edge;
   }
 
-  mixin AttrAccess!("gv_edge");
+  mixin AttrAccess!(gv_edge);
 }
